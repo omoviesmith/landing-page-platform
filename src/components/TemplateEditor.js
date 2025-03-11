@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { fetchTemplate, updateAndDeploy } from '../services/api';
 
@@ -16,6 +16,7 @@ function TemplateEditor() {
   const [template, setTemplate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deployUrl, setDeployUrl] = useState('');
+  const [deployMessage, setDeployMessage] = useState('');
   const [deploying, setDeploying] = useState(false);
   const { category, templateId } = useParams();
 
@@ -37,14 +38,16 @@ function TemplateEditor() {
   const handleSubmit = async (values, { setSubmitting }) => {
     setDeploying(true);
     try {
-      const { url } = await updateAndDeploy({
+      const result = await updateAndDeploy({
         category,
         templateId,
         ...values,
       });
-      setDeployUrl(url);
+      setDeployUrl(result.url);
+      setDeployMessage(result.message || 'Site deployed successfully!');
     } catch (error) {
       console.error('Error deploying site:', error);
+      setDeployMessage('Failed to deploy site. Please try again.');
     }
     setDeploying(false);
     setSubmitting(false);
@@ -76,31 +79,31 @@ function TemplateEditor() {
                 <div className="form-group">
                   <label htmlFor="businessName">Business Name</label>
                   <Field id="businessName" name="businessName" className="form-control" />
-                  {errors.businessName && touched.businessName ? <div className="error">{errors.businessName}</div> : null}
+                  <ErrorMessage name="businessName" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="tagline">Tagline</label>
                   <Field id="tagline" name="tagline" className="form-control" />
-                  {errors.tagline && touched.tagline ? <div className="error">{errors.tagline}</div> : null}
+                  <ErrorMessage name="tagline" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
                   <Field as="textarea" id="description" name="description" className="form-control" />
-                  {errors.description && touched.description ? <div className="error">{errors.description}</div> : null}
+                  <ErrorMessage name="description" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="phoneNumber">Phone Number</label>
                   <Field id="phoneNumber" name="phoneNumber" className="form-control" />
-                  {errors.phoneNumber && touched.phoneNumber ? <div className="error">{errors.phoneNumber}</div> : null}
+                  <ErrorMessage name="phoneNumber" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <Field id="email" name="email" type="email" className="form-control" />
-                  {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
+                  <ErrorMessage name="email" component="div" className="error" />
                 </div>
 
                 <div className="form-group">
@@ -133,6 +136,7 @@ function TemplateEditor() {
       {deployUrl && (
         <div className="deploy-info">
           <h3>Deployment Successful!</h3>
+          <p>{deployMessage}</p>
           <p>Your landing page is available at:</p>
           <a href={deployUrl} target="_blank" rel="noopener noreferrer">{deployUrl}</a>
         </div>
