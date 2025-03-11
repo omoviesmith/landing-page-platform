@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchTemplates } from '../services/api';
 
 function TemplateSelector() {
   const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(true);
   const { category } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); // Changed from useHistory
 
   useEffect(() => {
     const loadTemplates = async () => {
@@ -24,7 +24,7 @@ function TemplateSelector() {
   }, [category]);
 
   const selectTemplate = (templateId) => {
-    history.push(`/edit/${category}/${templateId}`);
+    navigate(`/edit/${category}/${templateId}`); // Changed from history.push
   };
 
   if (loading) return <div>Loading templates...</div>;

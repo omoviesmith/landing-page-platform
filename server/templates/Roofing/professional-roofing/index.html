@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{businessName}} - Professional Roofing Services</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1631556097152-c39479bbff7e');
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 1rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: #e74c3c;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: background-color 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: #c0392b;
+    }
+    
+    .services {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .services h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .service-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .about {
+      background-color: #f9f9f9;
+      padding: 3rem 1rem;
+    }
+    
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    
+    .contact-info {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .contact-item {
+      flex: 1;
+      min-width: 200px;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">{{businessName}}</div>
+  </header>
+  
+  <section class="hero">
+    <h1>{{businessName}}</h1>
+    <p>{{tagline}}</p>
+    <a href="#contact" class="cta-button">Get Free Quote</a>
+  </section>
+  
+  <section class="services">
+    <h2>Our Roofing Services</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>Roof Installation</h3>
+        <p>Professional installation of new roofs for residential and commercial properties.</p>
+      </div>
+      <div class="service-card">
+        <h3>Roof Repairs</h3>
+        <p>Quick and effective repairs for leaks, storm damage, and other roofing issues.</p>
+      </div>
+      <div class="service-card">
+        <h3>Roof Replacement</h3>
+        <p>Complete roof replacement services with quality materials and expert craftsmanship.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>{{description}}</p>
+    </div>
+  </section>
+  
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Ready to start your roofing project? Get in touch with us today!</p>
+    
+    <div class="contact-info">
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <p>{{phoneNumber}}</p>
+      </div>
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p>{{email}}</p>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <p>&copy; 2023 {{businessName}}. All rights reserved.</p>
+  </footer>
+</body>
+</html>
